@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "target": "net.minecraft.client.gui.screen.TitleScreen",
+  "minVersion": "0.0.0",
+  "compatibilityLevel": 2,
+  "mixins": [
+    {
+      "name": "com.dooji.dpf.mixin.MixinTitleScreen",
+      "target": "net.minecraft.client.gui.screen.TitleScreen"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "dpf",
+	"version": "${version}",
+	"name": "Dooji's Potato Farm",
+	"description": "A super simple cool mod to enhance your Minecraft title screen!",
+	"authors": [
+		"Dooji"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/project/doojis-potato-farm",
+		"sources": "https://github.com/dooji2/doojis-potato-farm"
+	},
+	"license": "MIT",
+	"icon": "assets/dpf/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.dooji.dpf.DoojisPotatoFarm"
+		]
+	},
+	"mixins": [
+		"dpf.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.9",
+		"minecraft": ">1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
