@@ -11,7 +11,7 @@
 		"homepage": "https://modrinth.com/project/doojis-potato-farm",
 		"sources": "https://github.com/dooji2/doojis-potato-farm"
 	},
-	"license": "MIT",
+	"license": "GPL-3.0",
 	"icon": "assets/dpf/icon.png",
 	"environment": "*",
 	"entrypoints": {
