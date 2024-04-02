@@ -206,6 +206,8 @@ public class PotatoActions {
         int z = player.getBlockZ() + random.nextInt(maxTeleportDistance * 2) - maxTeleportDistance;
         int y = world.getTopY(Heightmap.Type.WORLD_SURFACE, x, z);
 
+        y = Math.max(y, 0);
+
         return new BlockPos(x, y, z);
     }
 
