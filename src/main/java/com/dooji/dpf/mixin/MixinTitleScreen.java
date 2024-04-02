@@ -1,21 +1,20 @@
 package com.dooji.dpf.mixin;
 
-import net.minecraft.GameVersion;
-import net.minecraft.SharedConstants;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.dooji.dpf.FakeGameVersion;
-
-import java.lang.reflect.Field;
+import com.dooji.dpf.Potato;
+import com.dooji.dpf.PotatoSpawner;
 
 import java.util.Random;
 
@@ -23,6 +22,11 @@ import java.util.Random;
 public class MixinTitleScreen {
 
     private Random random = new Random();
+    private MinecraftClient client = MinecraftClient.getInstance();
+    private final PotatoSpawner potatoSpawner = new PotatoSpawner(client);
+    private final Identifier potatoTexture = new Identifier("dpf", "icon.png");
+
+    private Boolean timerStarted = false;
 
     @Inject(method = "init", at = @At("TAIL"))
     private void initMixin(CallbackInfo info) {
@@ -42,22 +46,18 @@ public class MixinTitleScreen {
                 button.setMessage(getRandomPotatoText());
             }
         }
+
+        if (!timerStarted) {
+            potatoSpawner.startSpawning();
+            timerStarted = true;
+        }
     }
 
-    @Inject(method = "render", at = @At("HEAD"))
+    @Inject(method = "render", at = @At("TAIL"))
     private void renderMixin(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo info) {
-        String fakeVersionId = getRandomFakeVersion();
-        String fakeVersionName = fakeVersionId;
-        int fakeProtocolVersion = 757;
-
-        GameVersion fakeVersion = new FakeGameVersion(fakeVersionId, fakeVersionName, fakeProtocolVersion);
-
-        try {
-            Field field = SharedConstants.class.getDeclaredField("gameVersion");
-            field.setAccessible(true);
-            field.set(null, fakeVersion);
-        } catch (IllegalAccessException | NoSuchFieldException e) {
-            e.printStackTrace();
+        for (Potato potato : potatoSpawner.getPotatoes()) {
+            context.drawTexture(potatoTexture, potato.getX(), potato.getY(), 0, 0, potato.getSize(), potato.getSize(),
+                    potato.getSize(), potato.getSize());
         }
     }
 
@@ -72,16 +72,5 @@ public class MixinTitleScreen {
         };
 
         return Text.of(potatoPhrases[random.nextInt(potatoPhrases.length)]);
-    }
-
-    private String getRandomFakeVersion() {
-        String[] versions = {
-                "Potato 1.90.4",
-                "Potato Alpha 912.213.1",
-                "Potato Beta 2.0",
-                "Potato Gamma 3.14",
-        };
-
-        return versions[random.nextInt(versions.length)];
     }
 }
