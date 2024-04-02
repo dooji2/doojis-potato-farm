@@ -4,6 +4,6 @@ An April Fools mod that enhances your potato experience! It adds new events in y
 **See the screenshots for more info**
 
 Anyway, do you like potatoes?!
-![Do you like potatoes?](https://cdn.modrinth.com/data/cached_images/161a62c729c69f5b6b6b3a09b0251ac08eff0e64.png)
+![Potatoes?](https://cdn.modrinth.com/data/cached_images/15564ce364c0d4805a6222405d9c8efc1393eec4.png)
 
 https://modrinth.com/mod/doojis-potato-farm
