@@ -1,3 +1,3 @@
 # Dooji's Potato Farm
-A super simple cool mod to enhance your Minecraft title screen!! It also gives you access to cool new features like accessing KFC from your title screen or playing unreleased versions of Minecraft!!!!
+An April Fools mod that enhances your potato experience! It adds new events in your world (to hopefully make you obey the Potato), cute potatoes on your screen that are not annoying, and more!
 https://modrinth.com/mod/doojis-potato-farm
